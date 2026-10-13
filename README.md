@@ -23,7 +23,7 @@ Add-on minimale per eseguire l'immagine ufficiale di n8n su Home Assistant. Il r
 
 ### 🚀 Installare n8n in Home Assistant
 
-L'indirizzo GitHub di questo repository è **https://github.com/making-lemonade/n8n**. Al momento il repository è privato: Home Assistant non può installarlo come repository remoto finché resta privato.
+L'indirizzo GitHub di questo repository è **https://github.com/making-lemonade/n8n-haos**. Al momento il repository è privato: Home Assistant non può installarlo come repository remoto finché resta privato.
 
 Per usarlo adesso, installalo come app locale:
 
@@ -68,7 +68,7 @@ A minimal Home Assistant add-on that runs the official n8n image. This repositor
 
 ### 🚀 Install n8n in Home Assistant
 
-The GitHub address for this repository is **https://github.com/making-lemonade/n8n**. The repository is currently private, so Home Assistant cannot install it as a remote repository while it remains private.
+The GitHub address for this repository is **https://github.com/making-lemonade/n8n-haos**. The repository is currently private, so Home Assistant cannot install it as a remote repository while it remains private.
 
 To use it now, install it as a local app:
 
