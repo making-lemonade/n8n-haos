@@ -1,32 +1,36 @@
 # n8n for Home Assistant
 
-Questa app avvia l'immagine ufficiale n8n. Il piccolo entrypoint legge le opzioni salvate da Home Assistant e passa le variabili d'ambiente a n8n; non modifica l'immagine o il comportamento applicativo di n8n.
+Questa app avvia l'immagine ufficiale di n8n con un piccolo adattatore che passa al container le variabili configurate in Home Assistant. Workflow, database e credenziali restano nell'area dati persistente dell'app.
 
 ## Configurazione
 
-Nella configurazione dell'app, aggiungi una voce per ogni variabile d'ambiente n8n nel formato `NOME=valore`. Esempio:
+Aggiungi una voce per ogni variabile d'ambiente n8n nell'opzione `environment`, nel formato `NOME=valore`. Esempio:
 
 ```yaml
 environment:
   - GENERIC_TIMEZONE=Europe/Rome
   - TZ=Europe/Rome
-  - N8N_ENCRYPTION_KEY=una-chiave-lunga-e-casuale
+  - N8N_ENCRYPTION_KEY=INSERISCI_QUI_UNA_CHIAVE_CASUALE
 ```
 
-La stessa opzione si può modificare dall'interfaccia di Home Assistant o dal relativo editor YAML. Non inserire segreti nel repository GitHub. Home Assistant conserva queste opzioni nella configurazione dell'app.
+Imposta i valori nella configurazione dell'app in Home Assistant, tramite interfaccia o editor YAML. Home Assistant conserva questi valori sul proprio dispositivo e li passa al container; non vengono scritti nei file di questo repository. Non fare commit di credenziali o chiavi private.
 
-Se non specifichi `N8N_ENCRYPTION_KEY`, n8n genera una chiave e la salva nella propria cartella dati. Se imposti una chiave esplicita, mantienila invariata: cambiarla rende illeggibili le credenziali già cifrate.
+Se non specifichi `N8N_ENCRYPTION_KEY`, n8n genera una chiave e la salva nella cartella dati persistente. Se imposti una chiave, conservala e non cambiarla: le credenziali già cifrate non potranno essere lette con una chiave diversa.
 
-Ogni voce viene passata come variabile d'ambiente; il primo `=` separa il nome dal valore. Le righe vuote e quelle che iniziano con `#` sono ignorate. Non è necessario racchiudere i valori tra virgolette.
+Ogni voce viene passata come variabile d'ambiente. Il primo `=` separa nome e valore; righe vuote e righe che iniziano con `#` vengono ignorate. Non racchiudere i valori tra virgolette.
 
 ## Rete
 
-La porta interna 5678 viene pubblicata sulla porta 5678 del dispositivo Home Assistant e la Web UI apre quell'indirizzo. Se la porta host è già occupata, cambiala nella sezione Network della configurazione dell'app.
+La porta interna 5678 è pubblicata sulla porta 5678 dell'host Home Assistant e la Web UI apre quell'indirizzo. Se la porta host è occupata, cambiala nella sezione Network della configurazione dell'app.
 
-Per webhook, OAuth e trigger raggiungibili dall'esterno può essere necessario configurare `WEBHOOK_URL`, `N8N_HOST`, `N8N_PROTOCOL` e le impostazioni del proxy in base al dominio e al proxy effettivamente usati. Non esporre n8n direttamente su Internet senza proteggere l'accesso.
+Per webhook, OAuth e trigger che devono essere raggiungibili dall'esterno può essere necessario configurare `WEBHOOK_URL`, `N8N_HOST`, `N8N_PROTOCOL` e il proxy usato. Non esporre n8n direttamente su Internet senza proteggere l'accesso.
 
 ## Persistenza e aggiornamenti
 
-Database SQLite, workflow, credenziali e configurazione di n8n sono conservati in `/home/node/.n8n`, montata sull'area dati persistente dell'app Home Assistant. Disinstallare l'app può rimuovere i suoi dati: crea un backup prima di operazioni di manutenzione.
+n8n conserva database SQLite, workflow, credenziali e configurazione in `/home/node/.n8n`, montata sull'area dati persistente dell'app. Crea un backup prima di disinstallare o migrare l'app.
 
-L'immagine ufficiale è fissata alla versione indicata nel `Dockerfile`; per aggiornare n8n occorre aggiornare quella versione e pubblicare una nuova versione dell'app.
+L'immagine ufficiale è fissata nel `Dockerfile`; per aggiornare n8n occorre aggiornare il tag dell'immagine e pubblicare una nuova versione dell'app.
+
+## Installare un fork
+
+Per usare la propria copia, fai un fork di questo repository e aggiungi l'URL del fork tramite **Impostazioni → App → App Store → Repository**. Home Assistant deve poter scaricare il repository: per l'installazione remota il fork deve essere pubblico. In alternativa, puoi trasferire i file come app locale. Prima di rendere pubblico un fork, controlla che i file e la cronologia Git non contengano segreti o dati della tua istanza.
