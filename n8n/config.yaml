@@ -1,0 +1,22 @@
+name: n8n
+slug: n8n
+version: 1.0.0
+description: Esegue l'immagine ufficiale di n8n come app di Home Assistant.
+url: https://github.com/making-lemonade/n8n
+arch:
+  - aarch64
+  - amd64
+startup: application
+boot: auto
+webui: http://[HOST]:[PORT:5678]
+ports:
+  5678/tcp: 5678
+ports_description:
+  5678/tcp: Interfaccia web e API di n8n
+map:
+  - type: data
+    path: /home/node/.n8n
+options:
+  environment: []
+schema:
+  environment: "[str]"
