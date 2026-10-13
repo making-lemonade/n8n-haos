@@ -1,13 +1,18 @@
 # Changelog
 
+## 1.0.2
+
+- Changed the official n8n image source to the verified Docker Hub publisher to work around repeated rate limits from `docker.n8n.io`.
+- Kept n8n pinned to version 2.42.7.
+
 ## 1.0.1
 
-- Corretto lo schema della configurazione `environment` per far riconoscere correttamente l'app nello store Home Assistant.
+- Fixed the `environment` configuration schema so Home Assistant Store recognizes the app correctly.
 
 ## 1.0.0
 
-- Prima versione dell'app Home Assistant basata sull'immagine ufficiale n8n.
-- Configurazione di variabili d'ambiente dalla schermata dell'app Home Assistant.
-- Persistenza dei dati n8n nell'area dati dell'app.
-- Istruzioni per installare un fork e mantenere i segreti fuori da GitHub.
-- Realizzato con l'assistenza di ChatGPT.
+- Initial Home Assistant app based on the official n8n image.
+- Configure environment variables from the Home Assistant app page.
+- Persist n8n data in the app data directory.
+- Instructions for installing a fork and keeping secrets out of GitHub.
+- Made with assistance from ChatGPT.
