@@ -1,6 +1,6 @@
 name: n8n
 slug: n8n
-version: 1.0.0
+version: 1.0.1
 description: Immagine ufficiale n8n con configurazione e dati persistenti in Home Assistant.
 url: https://github.com/making-lemonade/n8n-haos
 arch:
@@ -19,4 +19,5 @@ map:
 options:
   environment: []
 schema:
-  environment: "[str]"
+  environment:
+    - str
