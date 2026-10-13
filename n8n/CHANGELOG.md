@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.1
+
+- Corretto lo schema della configurazione `environment` per far riconoscere correttamente l'app nello store Home Assistant.
+
 ## 1.0.0
 
 - Prima versione dell'app Home Assistant basata sull'immagine ufficiale n8n.
