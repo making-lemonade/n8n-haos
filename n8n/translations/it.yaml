@@ -1,0 +1,6 @@
+configuration:
+  environment:
+    name: Variabili d'ambiente n8n
+    description: Elenco di voci NOME=valore. Inserisci qui le impostazioni e i segreti usati da n8n.
+network:
+  5678/TCP: Interfaccia web e API di n8n
