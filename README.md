@@ -1,20 +1,29 @@
 # n8n for Home Assistant
 
-Repository Home Assistant per avviare n8n usando l'immagine ufficiale `docker.n8n.io/n8nio/n8n`. Il repository contiene soltanto l'integrazione minima per renderlo installabile come app di Home Assistant e inoltrare le opzioni configurate in Home Assistant alle variabili d'ambiente di n8n.
+Add-on minimale per eseguire l'immagine ufficiale di n8n su Home Assistant. Il repository contiene solo i file necessari all'add-on: non contiene database, workflow, credenziali o configurazioni personali dell'istanza.
 
-## Installazione
+## Installare la propria istanza
 
-1. Aggiungi questo repository all'App Store di Home Assistant.
-2. Installa **n8n**.
-3. Apri la configurazione dell'app. L'opzione `environment` accetta una lista di righe `NOME_VARIABILE=valore`; inserisci qui le impostazioni n8n e i segreti. Puoi gestirla dalla schermata dell'app o tramite l'editor YAML della configurazione dell'app.
-4. Avvia l'app e apri la Web UI. n8n conserva database, workflow, credenziali e chiave generata automaticamente nell'area dati persistente dell'app.
+1. Da Home Assistant, apri **Impostazioni → App → App Store**.
+2. Dal menu in alto a destra scegli **Repository** e aggiungi l'URL GitHub di questo repository o del tuo fork.
+3. Installa **n8n**.
+4. Nella configurazione dell'app, inserisci le variabili n8n richieste come righe `NOME=valore` nell'opzione `environment`. Puoi usare l'interfaccia o il suo editor YAML.
+5. Avvia l'app e apri la Web UI.
 
-L'istanza n8n usa la porta 5678 sul dispositivo Home Assistant. Se la porta è già occupata, cambia la porta host nella sezione Network dell'app.
+La porta predefinita è 5678. Se è già occupata, cambia la porta host nella sezione Network dell'app.
 
-## Nota sulla visibilità
+## Dati e segreti
 
-Home Assistant deve poter leggere il repository GitHub per installarlo. Se questo repository resta privato, il normale App Store di Home Assistant non può scaricarlo. Per aggiungerlo come repository remoto, rendilo pubblico; in alternativa, trasferisci i file sul dispositivo e installa l'app localmente.
+Le opzioni dell'app, comprese le variabili che contengono segreti, vengono salvate da Home Assistant sul proprio dispositivo e passate direttamente al container all'avvio. Non inserirle in questo repository, negli esempi o nei commit GitHub.
+
+Database SQLite, workflow, credenziali n8n e chiave generata automaticamente sono conservati nell'area dati persistente dell'app Home Assistant. Crea un backup prima di disinstallare o migrare l'app.
+
+## Usare un fork o pubblicare una propria copia
+
+Puoi fare un fork di questo repository e aggiungere l'URL del fork ad Home Assistant. Il repository deve essere pubblico perché Home Assistant possa scaricarlo come repository remoto; una copia privata può essere installata solo trasferendo i file sul dispositivo come app locale.
+
+Prima di rendere pubblico un fork, verifica che contenga solo codice e documentazione e che nessuna opzione personale o segreto sia stata salvata nei file o nella cronologia Git.
 
 ## Versioni
 
-L'immagine ufficiale n8n è fissata nel `Dockerfile`. Gli aggiornamenti del componente e dell'immagine vengono mantenuti separati.
+L'add-on usa l'immagine ufficiale n8n, fissata nel `Dockerfile`. Consulta `n8n/CHANGELOG.md` per le modifiche.
