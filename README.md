@@ -38,7 +38,7 @@ Per usarlo adesso, installalo come app locale:
      - TZ=Europe/Rome
    ```
 
-   `GENERIC_TIMEZONE` imposta il fuso usato da n8n, ad esempio dai nodi di pianificazione; `TZ` imposta il fuso orario del container. Sono già sufficienti per iniziare a usare l'interfaccia web.
+   `GENERIC_TIMEZONE` imposta il fuso usato da n8n, ad esempio dai nodi di pianificazione; `TZ` imposta il fuso orario del container. Per trovare il valore adatto alla tua località, consulta la [lista dei fusi orari del database tz su Wikipedia](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) e copia la colonna **TZ identifier** (per Roma: `Europe/Rome`). Inserisci quel nome in entrambe le righe, non l'offset UTC (`+01:00`) né l'abbreviazione (`CET`), così il cambio tra ora solare e legale viene gestito correttamente. Sono già sufficienti per iniziare a usare l'interfaccia web.
 
 5. Salva, avvia l'app e apri la Web UI sulla porta **5678**.
 
@@ -83,7 +83,7 @@ To use it now, install it as a local app:
      - TZ=Europe/Rome
    ```
 
-   `GENERIC_TIMEZONE` sets n8n's time zone, for example for schedule nodes; `TZ` sets the container time zone. These are enough to get started with the web interface.
+   `GENERIC_TIMEZONE` sets n8n's time zone, for example for schedule nodes; `TZ` sets the container time zone. To find the right value for your location, use Wikipedia's [list of time zones from the tz database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) and copy the **TZ identifier** column (for Rome: `Europe/Rome`). Use that name in both entries, not the UTC offset (`+01:00`) or abbreviation (`CET`), so daylight-saving changes are handled correctly. These are enough to get started with the web interface.
 
 5. Save, start the app, and open the Web UI on port **5678**.
 
