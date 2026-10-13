@@ -2,6 +2,7 @@ const fs = require("node:fs");
 const { spawn } = require("node:child_process");
 
 const optionsPath = "/data/options.json";
+const dataPath = "/home/node/.n8n";
 let options = {};
 
 try {
@@ -46,6 +47,16 @@ for (const entry of entries) {
 const [command, ...args] = process.argv.slice(2);
 if (!command) {
   console.error("No n8n command was provided.");
+  process.exit(1);
+}
+
+try {
+  fs.mkdirSync(dataPath, { recursive: true });
+  fs.chownSync(dataPath, 1000, 1000);
+  process.setgid(1000);
+  process.setuid(1000);
+} catch (error) {
+  console.error(`Unable to prepare n8n's persistent data directory: ${error.message}`);
   process.exit(1);
 }
 
